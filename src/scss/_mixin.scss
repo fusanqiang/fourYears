@@ -1,0 +1,184 @@
+@mixin section {
+	width:100%;
+	overflow: hidden;
+}
+
+@mixin main {
+	width:1080px;
+	margin:0 auto;
+	overflow: hidden;
+}
+// 图片缩放动画
+@mixin tscale($tim,$snum) {
+	img {
+        // @include transition(All $tim ease-in-out);
+        -moz-transition: All $tim ease-in-out;
+        -webkit-transition: All $tim ease-in-out;
+        -o-transition: All $tim ease-in-out;
+        transition: All $tim ease-in-out;
+	}
+	&:hover {
+		img {
+            -moz-transform:scale($snum); 
+            -webkit-transform:scale($snum); 
+            -o-transform:scale($snum);
+            transform:scale($snum);
+			// @include transform(scale($snum));
+		}
+	}
+}
+
+// 动画
+@mixin trans($num) {
+	// @include transition(all $num ease-in-out);
+    -moz-transition: all $num ease-in-out;
+    -webkit-transition: all $num ease-in-out;
+    -o-transition: all $num ease-in-out;
+    transition: all $num ease-in-out;
+}
+// clearfix
+@mixin clearfix {
+    zoom:1;
+    &:after {
+        clear:both;
+        content:'';
+        display:block;
+        width: 0;
+        height: 0;
+        visibility:hidden;
+    }
+    *height: 1%;
+}
+// 文字溢出省略
+@mixin ospace {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow:hidden;
+}
+//图片样式
+@mixin img($radius:0) {
+	img {
+		width: 100%;
+		height: 100%;
+		border-radius:$radius;
+	}
+}
+// 透明度
+@mixin opacity($opacity) {
+    filter: alpha(opacity=#{$opacity*100}); // IE 5-9+
+    opacity: $opacity; 
+}
+
+// display: inline-block;
+@mixin inline_b {
+	display: inline-block;
+	*zoom:1;
+	*display:inline;
+}
+// radius
+@mixin radius($value:50%) {
+    -moz-border-radius: $value;
+    -webkit-border-radius: $value;
+    border-radius: $value;
+}
+// 三角形箭头
+@mixin arrow($direction,$size,$color) {
+    width: 0;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    overflow: hidden;
+    border-width: $size;
+    cursor: pointer;
+    @if $direction == top {
+        border-style: dashed dashed solid dashed;
+        border-color: transparent transparent $color transparent;
+        border-top: none;
+    }
+    @else if $direction == bottom {
+        border-style: solid dashed dashed dashed;
+        border-color: $color transparent transparent transparent;
+        border-bottom: none;
+    }
+    @else if $direction == right {
+        border-style: dashed dashed dashed solid;
+        border-color: transparent transparent transparent $color;
+        border-right: none;
+    }
+    @else if $direction == left {
+        border-style: dashed solid dashed dashed;
+        border-color: transparent $color transparent transparent;
+        border-left: none;
+    }
+}
+// 链接字体颜色
+@mixin aColors($normal: #333, $hover: $normal) {
+    color: $normal;
+    &:hover {
+        color: $hover;
+    }
+    // &:visited {
+    //     color: $visited;
+    // }
+}
+// borderRadius 
+@mixin borderRadius($valueTl,$valueTr,$valueBr,$valueBl){
+    border-top-left-radius:$valueTl;
+    border-top-right-radius: $valueTr;
+    border-bottom-right-radius: $valueBr;
+    border-bottom-left-radius: $valueBl;
+}
+// 阴影
+@mixin box-shadow($value1,$value2,$value3,$color){
+    -webkit-box-shadow:$value1 $value2 $value3 $color;
+    -moz-box-shadow:$value1 $value2 $value3 $color;
+    box-shadow:$value1 $value2 $value3 $color;
+}
+// flex布局
+// flex
+@mixin flex{
+    display: -webkit-box;     
+    display: -moz-box;        
+    display: -ms-flexbox;      
+    display: -webkit-flex;      
+    display: flex;     
+}
+// flexList
+@mixin flexList($value:1){
+    -webkit-box-flex: $value;
+    -moz-box-flex: $value;
+    -webkit-flex: $value;
+    -ms-flex: $value;
+    flex: $value;
+}
+// 延时
+@mixin delay($value:1s){
+	-webkit-animation-delay: $value;
+            animation-delay: $value;
+}
+// 持续时间
+@mixin duration($value:1s){
+	-webkit-animation-duration: $value;
+            animation-duration: $value;
+}
+// 线性渐变
+@mixin linear-gradient($direction1,$direction2,$color1,$color2){
+	background: -webkit-linear-gradient($direction1, $color1 , $color2); 
+    background: -o-linear-gradient($direction2, $color1, $color2); 
+    background: -moz-linear-gradient($direction2, $color1, $color2); 
+    background: linear-gradient(to $direction2, $color1 , $color2);
+}
+//transform 旋转
+@mixin rotate($value){
+    -ms-transform:rotate($value);
+    -moz-transform:rotate($value);
+    -webkit-transform:rotate($value);
+    -o-transform:rotate($value);
+    transform:rotate($value);
+}
+@mixin calcHeight($value,$screen) {
+    height: $value / $screen * 100%;;
+}
+@mixin calcWidth($value,$screen) {
+    width: $value / $screen * 100%;;
+}
